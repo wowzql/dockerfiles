@@ -2,7 +2,7 @@ FROM php:7.2-apache
 LABEL maintainer="PHP7.2-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
 #默认web根目录环境变量
-ENV APACHE_DOCUMENT_ROOT /var/data
+ENV APACHE_DOCUMENT_ROOT /var/www
 ENV TIMEZONE=Asia/Shanghai
 
 # Install PHP extensions and PECL modules.
@@ -46,14 +46,13 @@ RUN buildDeps=" \
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
     #创建虚拟映射目录
     && mkdir ${APACHE_CONFDIR}/vhost \
-    && touch ${APACHE_CONFDIR}/vhost/default.cnf \
     #屏蔽默认虚拟映射配置
     && sed -ri -e 's!^IncludeOptional sites-enabled/\*.conf!# IncludeOptional sites-enabled/\*.conf!g' ${APACHE_CONFDIR}/apache2.conf \
     #引入虚拟映射配置
     && { \
       echo '\n'; \
       echo '#include vhost config'; \
-      echo 'IncludeOptional '${APACHE_CONFDIR}'/vhost/*.cnf'; \
+      echo 'IncludeOptional '${APACHE_CONFDIR}'/vhost/*.conf'; \
     } | tee -a ${APACHE_CONFDIR}/apache2.conf \
     #开启gzip
     && { \
@@ -89,7 +88,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ENV PATH=$PATH:/root/composer/vendor/bin COMPOSER_ALLOW_SUPERUSER=1
 
 #拷贝测试文件
-COPY phpinfo.php ${APACHE_DOCUMENT_ROOT}
+COPY default.conf dest ${APACHE_CONFDIR}/vhost/
+COPY info.php ${APACHE_DOCUMENT_ROOT}
 
 #设置工作目录
 WORKDIR ${APACHE_DOCUMENT_ROOT}
