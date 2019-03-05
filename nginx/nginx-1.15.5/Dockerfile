@@ -137,7 +137,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     #新建虚拟目录，用于存放虚拟目录映射配置
     && mkdir /etc/nginx/vhost \
     #数据存放目录
-    && mkdir /var/data \
+    && mkdir /var/www \
     && mkdir -p /usr/share/nginx/html \
     && echo '<h1> Hello PonyCool </h1>' > /usr/share/nginx/html/index.html
 
