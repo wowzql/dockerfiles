@@ -1,5 +1,5 @@
-FROM php:7.2-apache
-LABEL maintainer="PHP7.2-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
+FROM php:7.3-apache
+LABEL maintainer="PHP7.3-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
 #默认web根目录环境变量
 ENV APACHE_DOCUMENT_ROOT /var/www
@@ -23,6 +23,7 @@ RUN buildDeps=" \
         libpng-dev \
         libpq-dev \
         libxml2-dev \
+        libzip-dev \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \

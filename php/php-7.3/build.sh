@@ -6,11 +6,11 @@ docker ps -a | grep "Exited" | awk '{print $2}' | xargs docker rm
 docker images | grep none | awk '{print $3}' | xargs docker rmi
 
 #清除已有的
-docker stop php-7.2
-docker rm php-7.2
-docker rmi ponycool/php-7.2
+docker stop php-7.3
+docker rm php-7.3
+docker rmi ponycool/php-7.3
 
 docker rm $(docker ps -a -q)
 
 #编译生成
-docker build -t ponycool/php-7.2 ./
+docker build -t ponycool/php-7.3 ./

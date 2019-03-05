@@ -142,7 +142,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && echo '<h1> Hello PonyCool </h1>' > /usr/share/nginx/html/index.html
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx.vh.default.conf /etc/nginx/vhost/default.cnf
+COPY nginx.vh.default.conf /etc/nginx/vhost/default.conf
 
 #端口配置
 EXPOSE 80
