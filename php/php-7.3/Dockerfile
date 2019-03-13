@@ -28,7 +28,6 @@ RUN buildDeps=" \
         libxml2-dev \
         libzip-dev \
         imagemagick \
-        libltdl \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
@@ -42,7 +41,7 @@ RUN buildDeps=" \
     && pecl install mongodb \
     && pecl install imagick-3.4.3 \
     && docker-php-ext-enable memcached.so redis.so \
-    && docker-php-ext-enable mcrypt \
+    #&& docker-php-ext-enable mcrypt \
     && docker-php-ext-enable mongodb \
     && docker-php-ext-enable imagick \
     && apt-get purge -y --auto-remove $buildDeps \
