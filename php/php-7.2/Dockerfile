@@ -3,7 +3,6 @@ LABEL maintainer="PHP7.2-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
 #默认web根目录环境变量
 ENV APACHE_DOCUMENT_ROOT=/var/www
-#ENV PHP_INI_DIR=/etc
 ENV TIMEZONE=Asia/Shanghai
 
 # Install PHP extensions and PECL modules.
@@ -38,7 +37,8 @@ RUN buildDeps=" \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
     && pecl install memcached redis \
-    && pecl install mcrypt-1.0.1 \
+    #&& pecl install mcrypt-1.0.1 \
+    && pecl install mcrypt \
     && pecl install mongodb \
     && pecl install imagick-3.4.3 \
     && docker-php-ext-enable memcached.so redis.so \
