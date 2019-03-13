@@ -11,6 +11,10 @@ RUN buildDeps=" \
         libbz2-dev \
         libmemcached-dev \
         libsasl2-dev \
+        libmagickwand-dev \
+        libmagickcore-dev \
+        libicu-dev \
+        g++ \
     " \
     runtimeDeps=" \
         curl \
@@ -24,6 +28,9 @@ RUN buildDeps=" \
         libpng-dev \
         libpq-dev \
         libxml2-dev \
+        libzip-dev \
+        libmcrypt-dev \
+        imagemagick \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mcrypt mysql mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
@@ -32,8 +39,14 @@ RUN buildDeps=" \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
+    && docker-php-ext-install mcrypt \
+    && pecl install mongodb \
+    && pecl install imagick-3.4.3 \
     && pecl install memcached-2.2.0 redis \
     && docker-php-ext-enable memcached.so redis.so \
+    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-enable mongodb \
+    && docker-php-ext-enable imagick \
     && apt-get purge -y --auto-remove $buildDeps \
     && rm -r /var/lib/apt/lists/* \
     && a2enmod rewrite \
