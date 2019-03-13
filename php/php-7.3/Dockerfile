@@ -2,7 +2,7 @@ FROM php:7.3-apache
 LABEL maintainer="PHP7.3-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
 #默认web根目录环境变量
-ENV APACHE_DOCUMENT_ROOT /var/www
+ENV APACHE_DOCUMENT_ROOT=/var/www
 ENV TIMEZONE=Asia/Shanghai
 
 # Install PHP extensions and PECL modules.
@@ -11,9 +11,10 @@ RUN buildDeps=" \
         libbz2-dev \
         libmemcached-dev \
         libsasl2-dev \
-        libmcrypt-dev \
         libmagickwand-dev \
         libmagickcore-dev \
+        libicu-dev \
+        g++ \
     " \
     runtimeDeps=" \
         curl \
@@ -27,22 +28,22 @@ RUN buildDeps=" \
         libpq-dev \
         libxml2-dev \
         libzip-dev \
+        libmcrypt-dev \
         imagemagick \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
-    mcrypt \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
     && pecl install memcached redis \
-    #&& pecl install mcrypt-1.0.2 \
+    && pecl install mcrypt-1.0.2 \
     && pecl install mongodb \
     && pecl install imagick-3.4.3 \
     && docker-php-ext-enable memcached.so redis.so \
-    #&& docker-php-ext-enable mcrypt \
+    && docker-php-ext-enable mcrypt \
     && docker-php-ext-enable mongodb \
     && docker-php-ext-enable imagick \
     && apt-get purge -y --auto-remove $buildDeps \
@@ -58,7 +59,6 @@ RUN buildDeps=" \
         echo "upload_max_filesize = 25M"; \
         echo "post_max_size = 50M"; \ 
         echo "memory_limit = 128M"; \
-        echo "extension=mcrypt.so"; \
     } >> ${PHP_INI_DIR}/php.ini \
     #设置时区
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
