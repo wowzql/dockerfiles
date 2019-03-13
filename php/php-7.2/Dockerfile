@@ -2,8 +2,8 @@ FROM php:7.2-apache
 LABEL maintainer="PHP7.2-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
 #默认web根目录环境变量
-ENV APACHE_DOCUMENT_ROOT /var/www
-ENV PHP_INI_DIR=/etc
+ENV APACHE_DOCUMENT_ROOT=/var/www
+#ENV PHP_INI_DIR=/etc
 ENV TIMEZONE=Asia/Shanghai
 
 # Install PHP extensions and PECL modules.
