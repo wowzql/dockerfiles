@@ -57,8 +57,6 @@ RUN buildDeps=" \
         echo "upload_max_filesize = 25M"; \
         echo "post_max_size = 50M"; \ 
         echo "memory_limit = 128M"; \
-        echo "extension=redis.so"; \
-        echo "extension=memcached.so"; \
     } >> ${PHP_INI_DIR}/php.ini \
     #设置时区
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
