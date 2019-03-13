@@ -14,6 +14,8 @@ RUN buildDeps=" \
         libmcrypt-dev \
         libmagickwand-dev \
         libmagickcore-dev \
+        libicu-dev \
+        g++ \
     " \
     runtimeDeps=" \
         curl \
@@ -37,8 +39,7 @@ RUN buildDeps=" \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
     && pecl install memcached redis \
-    #&& pecl install mcrypt-1.0.1 \
-    && pecl install mcrypt \
+    && pecl install mcrypt-1.0.1 \
     && pecl install mongodb \
     && pecl install imagick-3.4.3 \
     && docker-php-ext-enable memcached.so redis.so \
