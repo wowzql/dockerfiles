@@ -59,7 +59,7 @@ RUN buildDeps=" \
         echo "memory_limit = 128M"; \
         echo "extension=redis.so"; \
         echo "extension=memcached.so"; \
-    } > ${PHP_INI_DIR}/php.ini \
+    } >> ${PHP_INI_DIR}/php.ini \
     #设置时区
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
     #创建虚拟映射目录
