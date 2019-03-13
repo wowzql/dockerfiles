@@ -49,6 +49,7 @@ RUN buildDeps=" \
     && apt-get purge -y --auto-remove $buildDeps \
     && rm -r /var/lib/apt/lists/* \
     && a2enmod rewrite \
+    && echo "extension=mcrypt.so" > /usr/local/etc/php/conf.d/mcrypt.ini \
     #更改默认web根目录
     && mkdir -p ${APACHE_DOCUMENT_ROOT} \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
