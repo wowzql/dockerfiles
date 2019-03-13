@@ -3,6 +3,7 @@ LABEL maintainer="PHP7.2-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
 #默认web根目录环境变量
 ENV APACHE_DOCUMENT_ROOT /var/www
+ENV PHP_INI_DIR=/etc
 ENV TIMEZONE=Asia/Shanghai
 
 # Install PHP extensions and PECL modules.
@@ -11,6 +12,9 @@ RUN buildDeps=" \
         libbz2-dev \
         libmemcached-dev \
         libsasl2-dev \
+        libmcrypt-dev \
+        libmagickwand-dev \
+        libmagickcore-dev \
     " \
     runtimeDeps=" \
         curl \
@@ -23,6 +27,8 @@ RUN buildDeps=" \
         libpng-dev \
         libpq-dev \
         libxml2-dev \
+        libzip-dev \
+        imagemagick \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
@@ -32,7 +38,13 @@ RUN buildDeps=" \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
     && pecl install memcached redis \
+    && pecl install mcrypt-1.0.1 \
+    && pecl install mongodb \
+    && pecl install imagick-3.4.3 \
     && docker-php-ext-enable memcached.so redis.so \
+    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-enable mongodb \
+    && docker-php-ext-enable imagick \
     && apt-get purge -y --auto-remove $buildDeps \
     && rm -r /var/lib/apt/lists/* \
     && a2enmod rewrite \
@@ -42,6 +54,11 @@ RUN buildDeps=" \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
     #拷贝配置文件php.ini
     && cp -p ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini \
+    && { \
+        echo "upload_max_filesize = 25M"; \
+        echo "post_max_size = 50M"; \ 
+        echo "memory_limit = 128M"; \
+    } > ${PHP_INI_DIR}/php.ini \
     #设置时区
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
     #创建虚拟映射目录
