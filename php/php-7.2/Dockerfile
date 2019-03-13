@@ -11,7 +11,6 @@ RUN buildDeps=" \
         libbz2-dev \
         libmemcached-dev \
         libsasl2-dev \
-        libmcrypt-dev \
         libmagickwand-dev \
         libmagickcore-dev \
         libicu-dev \
@@ -29,6 +28,7 @@ RUN buildDeps=" \
         libpq-dev \
         libxml2-dev \
         libzip-dev \
+        libmcrypt-dev \
         imagemagick \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
