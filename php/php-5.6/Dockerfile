@@ -56,6 +56,11 @@ RUN buildDeps=" \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
     #拷贝配置文件php.ini
     && cp -p ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini \
+    && { \
+        echo "upload_max_filesize = 25M"; \
+        echo "post_max_size = 50M"; \ 
+        echo "memory_limit = 256M"; \
+    } >> ${PHP_INI_DIR}/php.ini \
     #设置时区
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
     #创建虚拟映射目录
