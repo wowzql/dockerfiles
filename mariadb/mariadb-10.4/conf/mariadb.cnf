@@ -1,0 +1,4 @@
+[mysqld]
+
+# 修改最大连接数
+max_connections=1000
