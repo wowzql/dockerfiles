@@ -23,7 +23,7 @@ docker run -d \
 -v /DOWNLOAD_DIR:/var/aria2/downloads \
 -v /CONFIG_DIR:/var/aria2/conf \
 -e SECRET=YOUR_SECRET_CODE \
-ponycool/aria2-ariang
+ponycool/aria2-ariang:1.0
 ```
 
 **访问**
