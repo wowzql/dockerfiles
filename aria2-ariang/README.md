@@ -38,7 +38,7 @@ http://IP:PORT
 
 **Links**
 
-Blog: http://www.mayanpeng.cn
+Blog: http://blog.ponycool.com
 
 Email: pony#ponycool.com(将#替换为@)
 
