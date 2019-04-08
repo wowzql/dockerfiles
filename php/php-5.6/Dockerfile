@@ -53,8 +53,6 @@ RUN buildDeps=" \
     && a2enmod rewrite \
     # 设置系统时区
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    # 修改系统语言环境
-    && echo 'LANG="en_US.UTF-8"' >> /etc/profile;source /etc/profile \
     # 更改默认web根目录
     && mkdir -p ${APACHE_DOCUMENT_ROOT} \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
