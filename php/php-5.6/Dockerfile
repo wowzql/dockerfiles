@@ -31,7 +31,7 @@ RUN buildDeps=" \
         libzip-dev \
         libmcrypt-dev \
         imagemagick \
-        openssl-dev \
+        libssl-dev \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mcrypt mysql mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
