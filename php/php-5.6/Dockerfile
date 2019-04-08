@@ -1,7 +1,7 @@
 FROM php:5.6-apache
 LABEL maintainer="PHP5.6-APACHE DOCKER MAINTAINER <pony@ponycool.com>"
 
-#默认web根目录环境变量
+# 默认web根目录环境变量
 ENV APACHE_DOCUMENT_ROOT /var/www
 ENV TIMEZONE=Asia/Shanghai
 
@@ -31,6 +31,7 @@ RUN buildDeps=" \
         libzip-dev \
         libmcrypt-dev \
         imagemagick \
+        openssl-dev \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mcrypt mysql mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
@@ -50,30 +51,34 @@ RUN buildDeps=" \
     && apt-get purge -y --auto-remove $buildDeps \
     && rm -r /var/lib/apt/lists/* \
     && a2enmod rewrite \
-    #更改默认web根目录
+    # 设置系统时区
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    # 修改系统语言环境
+    && echo 'LANG="en_US.UTF-8"' >> /etc/profile;source /etc/profile \
+    # 更改默认web根目录
     && mkdir -p ${APACHE_DOCUMENT_ROOT} \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
-    #拷贝配置文件php.ini
+    # 拷贝配置文件php.ini
     && cp -p ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini \
     && { \
         echo "upload_max_filesize = 25M"; \
         echo "post_max_size = 50M"; \ 
         echo "memory_limit = 256M"; \
     } >> ${PHP_INI_DIR}/php.ini \
-    #设置时区
+    # 设置时区
     && sed -ri -e 's!^;date.timezone =!date.timezone = ${TIMEZONE}!g' ${PHP_INI_DIR}/php.ini \
-    #创建虚拟映射目录
+    # 创建虚拟映射目录
     && mkdir ${APACHE_CONFDIR}/vhost \
-    #屏蔽默认虚拟映射配置
+    # 屏蔽默认虚拟映射配置
     && sed -ri -e 's!^IncludeOptional sites-enabled/\*.conf!# IncludeOptional sites-enabled/\*.conf!g' ${APACHE_CONFDIR}/apache2.conf \
-    #引入虚拟映射配置
+    # 引入虚拟映射配置
     && { \
       echo '\n'; \
       echo '#include vhost config'; \
       echo 'IncludeOptional '${APACHE_CONFDIR}'/vhost/*.conf'; \
     } | tee -a ${APACHE_CONFDIR}/apache2.conf \
-    #开启gzip
+    # 开启gzip
     && { \
       echo '\n'; \
       echo '#gzip'; \
@@ -87,13 +92,13 @@ RUN buildDeps=" \
       echo 'AddOutputFilterByType DEFLATE application/x-httpd-php application/x-httpd-fastphp'; \
       echo '</IfModule>'; \
     } | tee -a ${APACHE_CONFDIR}/apache2.conf \
-    #关闭Trace
+    # 关闭Trace
     && { \
       echo '\n'; \
       echo '#close trace'; \
       echo 'TraceEnable off'; \
     } | tee -a ${APACHE_CONFDIR}/apache2.conf \
-    #隐藏服务器Apache版本信息
+    # 隐藏服务器Apache版本信息
     && { \
       echo '\n'; \
       echo '#close apache signature info'; \
@@ -106,11 +111,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && ln -s $(composer config --global home) /root/composer
 ENV PATH=$PATH:/root/composer/vendor/bin COMPOSER_ALLOW_SUPERUSER=1
 
-#拷贝测试文件
+# 拷贝测试文件
 COPY default.conf ${APACHE_CONFDIR}/vhost/
 COPY info.php ${APACHE_DOCUMENT_ROOT}/html
 
-#设置工作目录
+# 设置工作目录
 WORKDIR ${APACHE_DOCUMENT_ROOT}
 
 
