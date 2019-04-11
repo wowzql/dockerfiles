@@ -1,4 +1,4 @@
-FROM ponycool/alpine
+FROM ponycool/alpine-3.9
 LABEL maintainer="ETCD-V3.3.10 DOCKER MAINTAINER <pony@ponycool.com>"
 
 ADD etcd /usr/local/bin/
