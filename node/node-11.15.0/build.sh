@@ -6,9 +6,9 @@ docker ps -a | grep "Exited" | awk '{print $2}' | xargs docker rm
 docker images | grep none | awk '{print $3}' | xargs docker rmi
 
 #清除已有的
-docker stop node-10.15.3
-docker rm node-10.15.3
-docker rmi ponycool/node-10.15.3
+docker stop node-11.15.0
+docker rm node-11.15.0
+docker rmi ponycool/node-11.15.0
 
 #重新生成
-docker build -t ponycool/node-10.15.3 ./
+docker build -t ponycool/node-11.15.0 ./
