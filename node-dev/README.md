@@ -1,4 +1,4 @@
-##  React开发环境镜像
+##  Node开发环境镜像
 
 
 
@@ -10,10 +10,10 @@
 
 ```
 docker run -d \
---name react \
+--name node-dev \
 -p 8080:8080 \
 -v /WORKDIR:/var/webroot/app
-ponycool/react:1.0
+ponycool/node-dev:1.0
 ```
 
 **组件**

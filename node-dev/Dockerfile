@@ -1,5 +1,5 @@
 FROM ponycool/node-10.16.0:1.0
-LABEL maintainer="React DOCKER MAINTAINER <pony@ponycool.com>"
+LABEL maintainer="NODE DEVELOPMENT DOCKER MAINTAINER <pony@ponycool.com>"
 
 # npm全局依赖
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global

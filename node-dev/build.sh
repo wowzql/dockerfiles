@@ -6,9 +6,9 @@ docker ps -a | grep "Exited" | awk '{print $2}' | xargs docker rm
 docker images | grep none | awk '{print $3}' | xargs docker rmi
 
 #清除已有的
-docker stop react
-docker rm react
-docker rmi ponycool/react
+docker stop node-dev
+docker rm node-dev
+docker rmi ponycool/node-dev
 
 #重新生成
-docker build -t ponycool/react ./
+docker build -t ponycool/node-dev ./
