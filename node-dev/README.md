@@ -23,6 +23,10 @@ ponycool/node-dev:1.0
 - typescript
 - cnpm
 - git
+- tyarn
+- less
+- umi
+
 
 
 **访问**
@@ -34,6 +38,12 @@ http://IP:PORT
 ```
 ./build.sh
 ```
+
+**日志**
+- 2.0
+    - yarn 替换为淘宝源
+    - 安装less
+    - 安装umi
 
 **Links**
 

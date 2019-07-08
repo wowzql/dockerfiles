@@ -16,6 +16,9 @@ RUN apk update \
     # 安装CNPM
     && npm install -g cnpm --registry=https://registry.npm.taobao.org \
     && cnpm install -g typescript \
+    && cnpm i yarn tyarn -g \
+    && cnpm install -g less \
+    && tyarn global add umi \
     && mkdir -p /var/webroot/app \
     && mkdir /var/darkhttpd
 
