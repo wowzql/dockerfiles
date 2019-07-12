@@ -25,6 +25,7 @@ ponycool/node-dev:1.0
 - git
 - tyarn
 - less
+- vue
 - umi
 
 
@@ -40,6 +41,8 @@ http://IP:PORT
 ```
 
 **日志**
+- 3.0
+    - 安装vue-cli
 - 2.0
     - yarn 替换为淘宝源
     - 安装less
