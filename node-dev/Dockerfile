@@ -18,6 +18,7 @@ RUN apk update \
     && cnpm install -g typescript \
     && cnpm i yarn tyarn -g \
     && cnpm install -g less \
+    && yarn global add @vue/cli \
     && tyarn global add umi \
     && mkdir -p /var/webroot/app \
     && mkdir /var/darkhttpd
