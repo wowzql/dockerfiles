@@ -25,7 +25,6 @@ ponycool/node-dev:1.0
 - git
 - tyarn
 - less
-- vue
 - umi
 
 
