@@ -15,12 +15,12 @@ RUN apk update \
     && source /etc/profile \
     # 安装CNPM
     && npm install -g cnpm --registry=https://registry.npm.taobao.org \
-    && cnpm install -g typescript \
     && cnpm i yarn tyarn -g \
+    && cnpm install -g typescript \
     && cnpm install -g less \
-    # 移除vue
+    # 移除vue、umi
     # && yarn global add @vue/cli \
-    && tyarn global add umi \
+    # && tyarn global add umi \
     && mkdir -p /var/webroot/app \
     && mkdir /var/darkhttpd
 
