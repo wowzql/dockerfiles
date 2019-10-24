@@ -8,5 +8,4 @@ elif [ "${FRP_TYPE}" == "server" ]; then
     type="s"
 fi
 
-echo $type
 $frp_path/frp$type -c $frp_path/frp$type.ini
