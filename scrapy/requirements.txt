@@ -1,0 +1,7 @@
+pymysql
+pymongo
+redis
+scrapy-redis
+ipython
+scrapy
+requests
