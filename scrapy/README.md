@@ -28,6 +28,11 @@
 ./build.sh
 ```
 
+**使用**
+
+```
+docker run -it --rm --name scrapy -v SPIDER_DIR:/usr/src/app  ponycool/scrapy:1.0
+```
 
 **Links**
 
