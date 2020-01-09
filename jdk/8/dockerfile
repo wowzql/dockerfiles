@@ -1,0 +1,19 @@
+FROM alpine:3.10
+LABEL maintainer="JDK8 DOCKER MAINTAINER <pony@ponycool.com>"
+
+RUN apk update && apk upgrade \
+    && apk add --no-cache  openjdk8 \
+    && rm -rf /var/cache/apk/* \
+    && echo 'https://mirrors.aliyun.com/alpine/v3.10/main' > /etc/apk/repositories \
+    && echo '@community https://mirrors.aliyun.com/alpine/v3.10/community' >> /etc/apk/repositories \
+    && echo '@testing https://mirrors.aliyun.com/alpine/edge/testing' >> /etc/apk/repositories
+
+#设置时区
+ENV TIMEZONE Asia/Shanghai
+RUN apk add tzdata \
+    && ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo ${TIMEZONE} > /etc/timezone
+
+WORKDIR /usr/local
+
+CMD [ "sh" ]
