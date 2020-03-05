@@ -32,7 +32,7 @@
 **使用**
 
 ```
-docker run -it --rm --name scrapy -v SPIDER_DIR:/usr/src/app  ponycool/scrapy:1.0
+docker run -it  -p 8081:8081  ponycool/azkaban-solo-3.81.0:1.0
 ```
 
 **Links**
