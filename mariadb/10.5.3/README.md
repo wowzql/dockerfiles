@@ -3,8 +3,8 @@
 ### 说明
 配置文件路径：/etc/mysql/mariadb.conf.d
 
-* 环境变量
-    - MYSQL_ROOT_PASSWORD
+环境变量
+- MYSQL_ROOT_PASSWORD
 
 ### 运行
 
