@@ -9,9 +9,9 @@ docker ps -a | grep "Exited" | awk '{print $2}' | xargs docker rm
 docker images | grep none | awk '{print $3}' | xargs docker rmi
 
 #清除已有的
-docker stop $IMAGE-$VERSION
-docker rm $IMAGE-$VERSION
-docker rmi ponycool/$IMAGE-$VERSION
+docker stop ${IMAGE-$VERSION}
+docker rm ${IMAGE-$VERSION}
+docker rmi ponycool/${IMAGE-$VERSION}
 
 #重新生成
-docker build -t ponycool/$IMAGE-$VERSION ./
+docker build -t ponycool/${IMAGE-$VERSION} ./
