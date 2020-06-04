@@ -28,6 +28,12 @@
 ./build.sh
 ```
 
+或者
+
+```
+make docker
+```
+
 **使用**
 
 ```
@@ -41,3 +47,5 @@ Blog: http://blog.ponycool.com
 Email: pony#ponycool.com(将#替换为@)
 
 Git: https://github.com/PonyCool
+
+DockerHub：https://hub.docker.com/u/ponycool
