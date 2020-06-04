@@ -11,7 +11,7 @@ docker run -d \
 --name node \
 -p 8080:8080 \
 -v /WORKDIR:/var/webroot/app
-ponycool/node-12.18.0:1.0
+ponycool/node-12.18.0
 ```
 
 **组件**
