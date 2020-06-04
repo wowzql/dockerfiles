@@ -1,0 +1,7 @@
+[mysqld]
+
+# 修改最大连接数
+max_connections = 1000
+
+# 修改接收数据大小限制
+max_allowed_packet = 1024M
