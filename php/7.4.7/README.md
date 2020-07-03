@@ -52,6 +52,7 @@ make docker
   + calendar
   + gd
   + ldap
+  + gmp
 
 ### Links
 

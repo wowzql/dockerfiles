@@ -48,6 +48,7 @@ RUN buildDeps=" \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
+    && docker-php-ext-install gmp \
     && pecl install memcached redis \
     && pecl install mcrypt-1.0.3 \
     && pecl install mongodb \
