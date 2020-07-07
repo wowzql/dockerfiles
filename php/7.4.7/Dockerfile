@@ -49,6 +49,9 @@ RUN buildDeps=" \
     && docker-php-ext-install ldap \
     && docker-php-ext-install exif \
     && docker-php-ext-install gmp \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-install sockets \
+    && docker-php-ext-install calendar \
     && pecl install memcached redis \
     && pecl install mcrypt-1.0.3 \
     && pecl install mongodb \

@@ -53,10 +53,13 @@ make docker
   + gd
   + ldap
   + gmp
+  + pcntl
+  + sockets
+  + calendar
 
 ### Links
 
-Blog: http://blog.ponycool.com
+Blog: https://blog.ponycool.com
 
 Email: pony#ponycool.com(将#替换为@)
 
