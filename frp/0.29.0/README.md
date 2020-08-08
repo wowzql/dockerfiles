@@ -24,12 +24,12 @@ FRP_TYPE: frp的启动类型
 CONF: 配置文件，服务端配置文件名为frps.ini,客户端配置文件名为frpc.ini
 
 ```
-docker run -it -e FRP_TYPE=server -v CONF:/usr/local/frp/frpc.ini ponycool/frp-0.29.0:1.0
+docker run -it -e FRP_TYPE=server -v CONF:/usr/local/frp/frps.ini ponycool/frp-0.29.0:1.0
 ```
 
 **Links**
 
-Blog: http://blog.ponycool.com
+Blog: https://www.mayanpeng.cn
 
 Email: pony#ponycool.com(将#替换为@)
 

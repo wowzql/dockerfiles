@@ -37,7 +37,7 @@ docker run -it  -p 8081:8081  ponycool/azkaban-solo-3.81.0:1.0
 
 **Links**
 
-Blog: https://blog.ponycool.com
+Blog: https://www.mayanpeng.cn
 
 Email: pony#ponycool.com(将#替换为@)
 

@@ -46,7 +46,7 @@ executor端需要web端配合使用，不能单独使用。executor端口默认�
 
 **Links**
 
-Blog: https://blog.ponycool.com
+Blog: https://www.mayanpeng.cn
 
 Email: pony#ponycool.com(将#替换为@)
 

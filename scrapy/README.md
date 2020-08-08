@@ -42,7 +42,7 @@ docker run -it --rm --name scrapy -v SPIDER_DIR:/usr/src/app  ponycool/scrapy:1.
 
 **Links**
 
-Blog: http://blog.ponycool.com
+Blog: https://www.mayanpeng.cn
 
 Email: pony#ponycool.com(将#替换为@)
 

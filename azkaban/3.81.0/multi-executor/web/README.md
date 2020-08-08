@@ -38,7 +38,7 @@ web端需要executor端配合使用，不能单独使用。web端口默认为808
 
 **Links**
 
-Blog: https://blog.ponycool.com
+Blog: https://www.mayanpeng.cn
 
 Email: pony#ponycool.com(将#替换为@)
 

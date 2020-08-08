@@ -26,7 +26,7 @@ docker run -it --name jdk8 ponycool/jdk8:1.0
 
 **Links**
 
-Blog: https://blog.ponycool.com
+Blog: https://www.mayanpeng.cn
 
 Email: pony#ponycool.com(将#替换为@)
 
