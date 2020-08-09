@@ -10,7 +10,7 @@ Web根目录：/var/webroot
 docker run -d \
 --name php \
 -p 80:80 \
-ponycool/php-7.4.6
+ponycool/php-7.4.7
 ```
 
 ### 构建
