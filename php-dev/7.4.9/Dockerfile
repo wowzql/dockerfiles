@@ -1,5 +1,5 @@
-FROM ponycool/php-7.4.7:latest
-LABEL maintainer="PHP7.4.7-DEV DOCKER MAINTAINER <pony@ponycool.com>"
+FROM ponycool/php-7.4.9:latest
+LABEL maintainer="PHP7.4.9-DEV DOCKER MAINTAINER <pony@ponycool.com>"
 
 # Install XDebug
 RUN pecl install xdebug \
