@@ -16,4 +16,4 @@ docker rmi ponycool/$IMAGE-$VERSION
 docker rm $(docker ps -a -q)
 
 #重新生成
-docker build -t ponycool/$IMAGE-$VERSION ./
+docker build -t wowzql/$IMAGE-$VERSION ./
